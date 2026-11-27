@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ PROJECT_TAGLINE }}">
+    <title>{{ BRAND_NAME }} | {{ PRODUCT_NAME }}</title>
+
+    <!-- Required fonts: Playfair Display (serif headers), Inter (body),
+         Fira Code (monospace / terminal-style output). Keep all three. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ path to copied base.css }}">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <!-- Sidebar: dark, brand block up top, nav items, admin/footer actions at bottom -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    {{ BRAND_NAME }}
+                    <span>{{ PRODUCT_NAME }}</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-label">Workspace Options</div>
+
+                <button class="tab-btn active" id="tab-primary" onclick="switchTab('primary')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Primary View
+                </button>
+
+                <!-- Add more .tab-btn entries per section. Use style="display:none;"
+                     to hide a tab until a prerequisite step unlocks it — this
+                     template stages tabs progressively, don't show everything
+                     at once if flow is sequential. -->
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="admin-toggle-btn" onclick="toggleAdminCard()">
+                    Developer Hub
+                </button>
+            </div>
+        </aside>
+
+        <!-- Workspace: topbar + scrollable content area -->
+        <main class="workspace">
+            <header class="topbar">
+                <div class="topbar-title">
+                    <h1 id="topbarMainTitle">Primary Workspace</h1>
+                    <p>One-line description of what this screen lets the user do.</p>
+                </div>
+                <div class="system-status">
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        System Status: Stable
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-scrollable">
+
+                <section id="view-primary">
+                    <!-- KPI row (optional) -->
+                    <div class="kpi-grid">
+                        <div class="kpi-tile">
+                            <div class="kpi-val">128</div>
+                            <div class="kpi-lbl">Total Records</div>
+                        </div>
+                    </div>
+
+                    <!-- Standard content card -->
+                    <div class="card">
+                        <div class="card-header-bar">
+                            <div>
+                                <h2>Section Title</h2>
+                                <p class="sub-desc">Short supporting description.</p>
+                            </div>
+                            <button class="btn" onclick="doSomething()">Primary Action</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Column A</th>
+                                        <th>Column B</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Value</td>
+                                        <td>Value</td>
+                                        <td><span class="pill pill-mapped">Mapped</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.querySelectorAll('main.workspace section[id^="view-"]').forEach(s => s.style.display = 'none');
+            document.getElementById('view-' + tabId).style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
